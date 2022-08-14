@@ -1,6 +1,6 @@
-import FontSize from "../../utilities/types/tailWindTypes/FontSize";
-import FontWeight from "../../utilities/types/tailWindTypes/FontWeight";
-import TextAlign from "../../utilities/types/tailWindTypes/TextAlign";
+import FontSize from "../../utilities/types/tailwindcss/FontSize";
+import FontWeight from "../../utilities/types/tailwindcss/FontWeight";
+import TextAlign from "../../utilities/types/tailwindcss/TextAlign";
 
 interface TextProps {
     children: JSX.Element | JSX.Element[] | string;

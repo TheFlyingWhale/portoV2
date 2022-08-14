@@ -1,10 +1,10 @@
-import AlignItems from "../../utilities/types/tailWindTypes/AlignItems";
-import BorderRadius from "../../utilities/types/tailWindTypes/BorderRadius";
-import Gap from "../../utilities/types/tailWindTypes/Gap";
-import Height from "../../utilities/types/tailWindTypes/Height";
-import JustifyContent from "../../utilities/types/tailWindTypes/JustifyContent";
-import Padding from "../../utilities/types/tailWindTypes/Padding";
-import Width from "../../utilities/types/tailWindTypes/Width";
+import AlignItems from "../../utilities/types/tailwindcss/AlignItems";
+import BorderRadius from "../../utilities/types/tailwindcss/BorderRadius";
+import Gap from "../../utilities/types/tailwindcss/Gap";
+import Height from "../../utilities/types/tailwindcss/Height";
+import JustifyContent from "../../utilities/types/tailwindcss/JustifyContent";
+import Padding from "../../utilities/types/tailwindcss/Padding";
+import Width from "../../utilities/types/tailwindcss/Width";
 
 interface ContainerProps {
     children: React.ReactNode;
