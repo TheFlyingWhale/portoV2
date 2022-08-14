@@ -7,6 +7,9 @@ const handler: RequestResponse = async (req, res) => {
         case "GET": {
             return getMessages(req, res);
         }
+        case "DELETE": {
+            return deleteMessage(req, res);
+        }
     }
 };
 
@@ -18,6 +21,34 @@ const getMessages: RequestResponse = async (req, res) => {
         const { db } = await connectToDatabase();
 
         const posts = await db.collection("messages").find({}).toArray();
+
+        return res.json({
+            message: JSON.parse(JSON.stringify(posts)),
+            success: true,
+        });
+    } catch (error) {
+        if (error instanceof Error) {
+            return res.json({
+                message: error,
+                success: false,
+            });
+        } else {
+            return res.json({
+                message: "Unexpected error",
+                success: false,
+            });
+        }
+    }
+};
+
+const deleteMessage: RequestResponse = async (req, res) => {
+    try {
+        //connect to the database
+        const { db } = await connectToDatabase();
+
+        const posts = await db
+            .collection("messages")
+            .deleteOne({ _id: new mongoDB.ObjectID(req.body) });
 
         return res.json({
             message: JSON.parse(JSON.stringify(posts)),

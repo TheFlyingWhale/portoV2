@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Container } from "../components/Layout";
-import { Heading, Text } from "../components/Typography";
+import DashboardNav from "../components/Dashboard/DashboardNav";
+import { Container } from "../components/General";
+import { Heading, Text } from "../components/General";
 
 const Home: NextPage = () => {
     return (
-        <div>
+        <Container h="h-screen" bg="bg-blue-100">
             <Head>
                 <title>Create Next App</title>
                 <meta
@@ -15,11 +16,15 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main>
+            <header>
+                <DashboardNav />
+            </header>
+
+            <main className="w-full h-full">
                 <Container
-                    orientation="flex-col"
-                    width="w-full"
-                    height="h-screen"
+                    flexDirection="flex-col"
+                    w="w-full"
+                    minH="min-h-full"
                     bg="bg-gray-900"
                     justifyContent="justify-center"
                     alignItems="items-center"
@@ -41,7 +46,7 @@ const Home: NextPage = () => {
                     </Container>
                 </Container>
             </main>
-        </div>
+        </Container>
     );
 };
 
