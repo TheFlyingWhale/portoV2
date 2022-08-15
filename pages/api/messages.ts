@@ -10,6 +10,9 @@ const handler: RequestResponse = async (req, res) => {
         case "DELETE": {
             return deleteMessage(req, res);
         }
+        case "POST": {
+            return updateMessage(req, res);
+        }
     }
 };
 
@@ -52,6 +55,36 @@ const deleteMessage: RequestResponse = async (req, res) => {
 
         return res.json({
             message: JSON.parse(JSON.stringify(posts)),
+            success: true,
+        });
+    } catch (error) {
+        if (error instanceof Error) {
+            return res.json({
+                message: error,
+                success: false,
+            });
+        } else {
+            return res.json({
+                message: "Unexpected error",
+                success: false,
+            });
+        }
+    }
+};
+
+const updateMessage: RequestResponse = async (req, res) => {
+    try {
+        //connect to the database
+        const { db } = await connectToDatabase();
+
+        const result = await db
+            .collection("messages")
+            .updateOne(
+                { _id: new mongoDB.ObjectID(req.body) },
+                { $set: { read: true } }
+            );
+        return res.json({
+            message: JSON.parse(JSON.stringify(result)),
             success: true,
         });
     } catch (error) {

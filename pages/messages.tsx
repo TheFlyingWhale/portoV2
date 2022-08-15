@@ -10,6 +10,7 @@ interface MessageInterface {
     email: string;
     subject: string;
     content: string;
+    read: boolean;
 }
 
 const MessagePage: NextPage = () => {
@@ -87,6 +88,19 @@ const MessageItem = ({ message }: { message: MessageInterface }) => {
         }
     };
 
+    const handleMarkAsRead = async () => {
+        try {
+            const res = await fetch("/api/messages", {
+                method: "POST",
+                body: message._id,
+            });
+            const data = await res.json();
+            console.log(data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <Container
             br="rounded-xl"
@@ -113,7 +127,13 @@ const MessageItem = ({ message }: { message: MessageInterface }) => {
                 <Text fontWeight="font-bold">Message: </Text>
                 <Text>{message.content}</Text>
             </Container>
-            <Button onClick={handleDelete}>Delete message</Button>
+            <Container>
+                <Text>{message.read ? "Read" : "Not read"}</Text>
+            </Container>
+            <Container flexDirection="flex-row" gap="gap-3">
+                <Button onClick={handleDelete}>Delete message</Button>
+                <Button onClick={handleMarkAsRead}>Mark as read</Button>
+            </Container>
         </Container>
     );
 };
